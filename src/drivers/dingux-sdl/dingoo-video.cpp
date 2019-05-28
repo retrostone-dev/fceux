@@ -162,7 +162,7 @@ int InitVideo(FCEUGI *gi) {
 			fprintf(stderr,"%s",SDL_GetError());
 		}
 
-	screen = SDL_SetVideoMode(240, 160, 16, SDL_HWSURFACE);
+	screen = SDL_SetVideoMode(0, 0, 16, SDL_HWSURFACE);
 	toscale_surface = SDL_CreateRGBSurface(SDL_SWSURFACE, 256, 240, 16, 0,0,0,0);
 	
 	s_VideoModeSet = true;
@@ -342,29 +342,7 @@ void BlitScreen(uint8 *XBuf) {
 			}
 			dest += pinc;
 		}
-		switch(s_fullscreen)
-		{
-			// No crop (except Left Column)
-			case 0:
-				bitmap_scale(toclip_ppu ? 8 : 0, 0, toclip_ppu ? 248 : 256, 224, screen->w, screen->h, 256, 0, (uint16_t* __restrict__)toscale_surface->pixels, (uint16_t* __restrict__)screen->pixels);
-			break;
-			// Nintendo Safe overscan
-			case 1:
-				bitmap_scale(16, 16, 224, 192, screen->w, screen->h, 256, 0, (uint16_t* __restrict__)toscale_surface->pixels, (uint16_t* __restrict__)screen->pixels);
-			break;
-			// PocketNES
-			case 2:
-				bitmap_scale(8, 16, 240, 197, screen->w, screen->h, 256, 0, (uint16_t* __restrict__)toscale_surface->pixels, (uint16_t* __restrict__)screen->pixels);
-			break;
-			// 240x16 crop
-			case 3:
-				bitmap_scale(8, 48, 240, 160, screen->w, screen->h, 256, 0, (uint16_t* __restrict__)toscale_surface->pixels, (uint16_t* __restrict__)screen->pixels);
-			break;
-			// Zelda ingame
-			case 4:
-				bitmap_scale(8, 64, 240, 160, screen->w, screen->h, 256, 0, (uint16_t* __restrict__)toscale_surface->pixels, (uint16_t* __restrict__)screen->pixels);
-			break;
-		}
+		bitmap_scale(toclip_ppu ? 8 : 0, 0, toclip_ppu ? 248 : 256, 224, screen->w, screen->h, 256, 0, (uint16_t* __restrict__)toscale_surface->pixels, (uint16_t* __restrict__)screen->pixels);
 		SDL_UnlockSurface(screen);
 	}
 		

@@ -124,8 +124,8 @@ Config * InitConfig() {
 	config->addOption("square2vol", "SDL.Sound.Square2Volume", 256);
 	config->addOption("noisevol", "SDL.Sound.NoiseVolume", 256);
 	config->addOption("pcmvol", "SDL.Sound.PCMVolume", 256);
-	config->addOption("soundrate", "SDL.Sound.Rate", 22050);
-	config->addOption("soundq", "SDL.Sound.Quality", 0);
+	config->addOption("soundrate", "SDL.Sound.Rate", 48000);
+	config->addOption("soundq", "SDL.Sound.Quality", 2);
 	config->addOption("soundrecord", "SDL.Sound.RecordFile", "");
 	config->addOption("soundbufsize", "SDL.Sound.BufSize", 30);
 	config->addOption("lowpass", "SDL.Sound.LowPass", 0);
@@ -147,8 +147,8 @@ Config * InitConfig() {
 	config->addOption("slend", "SDL.ScanLineEnd", 239);
 
 	// video controls
-	config->addOption('x', "xres", "SDL.XResolution", 240);
-	config->addOption('y', "yres", "SDL.YResolution", 160);
+	config->addOption('x', "xres", "SDL.XResolution", 680);
+	config->addOption('y', "yres", "SDL.YResolution", 448);
 	config->addOption('f', "fullscreen", "SDL.Fullscreen", 2);
 	config->addOption('b', "bpp", "SDL.BitsPerPixel", 16);
 	config->addOption("doublebuf", "SDL.DoubleBuffering", 0);
@@ -180,7 +180,7 @@ Config * InitConfig() {
 	config->addOption("mousespeed", "SDL.MouseSpeed", 3);
 	config->addOption("showmouse", "SDL.ShowMouseCursor", 0);
 
-	config->addOption("fpsthottle", "SDL.FPSThrottle", 0);
+	config->addOption("fpsthottle", "SDL.FPSThrottle", 1);
 	config->addOption("showfps", "SDL.ShowFPS", 0);
 
 	// input configuration options
@@ -227,7 +227,7 @@ Config * InitConfig() {
 	config->addOption("ripsubs", "SDL.RipSubs", "");
 
 	// enable new PPU core
-	config->addOption("newppu", "SDL.NewPPU", 0);
+	config->addOption("newppu", "SDL.NewPPU", 1);
 
 	// GamePad 0 - 3
 	for (unsigned int i = 0; i < GAMEPAD_NUM_DEVICES; i++) {
